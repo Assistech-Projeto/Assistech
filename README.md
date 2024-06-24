@@ -1,25 +1,27 @@
 # Clonar o repositório
-git clone URL_DO_REPOSITORIO
-cd nome-do-repositorio
+        git clone [URL_DO_REPOSITORIO](https://github.com/Assistech-Projeto/Assistech.git)
+        
+        cd nome-do-repositorio
 
 # Instalar dependências do PHP
-composer install
+        composer install
 
 # Configurar o arquivo .env
-cp .env.example .env
+        cp .env.example .env
 # (Edite o arquivo .env para configurar as variáveis de ambiente)
 
 # Gerar a chave da aplicação
-php artisan key:generate
+        php artisan key:generate
 
 # Executar migrations
-php artisan migrate
+        php artisan migrate
 
 # Instalar dependências do Node.js
-npm install
+        npm install
 
 # Compilar assets de front-end
-npm run dev
+        npm run dev
 
 # Iniciar o servidor de desenvolvimento
-php artisan serve
+        php artisan serve
+    
