@@ -1,6 +1,6 @@
 # Clonar o repositório
-        git clone [URL_DO_REPOSITORIO](https://github.com/Assistech-Projeto/Assistech.git)
-        
+        git clone https://github.com/Assistech-Projeto/Assistech.git
+#        
         cd nome-do-repositorio
 
 # Instalar dependências do PHP
