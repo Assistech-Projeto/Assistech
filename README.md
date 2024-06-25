@@ -20,7 +20,7 @@
         npm install
 
 # Compilar assets de front-end
-        npm run dev
+        npm run build
 
 # Iniciar o servidor de desenvolvimento
         php artisan serve
