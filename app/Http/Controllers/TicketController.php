@@ -9,9 +9,10 @@ class TicketController extends Controller
 {
     public function index()
     {
-        // Exibir todos os tickets do usuário logado
-        $tickets = Ticket::where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
-        return view('tickets.index', compact('tickets'));
+        // Exibir todos os tickets do usuário logado separados por status
+        $openTickets = Ticket::where('user_id', auth()->id())->where('status', 'aberto')->orderBy('created_at', 'desc')->get();
+        $closedTickets = Ticket::where('user_id', auth()->id())->where('status', 'fechado')->orderBy('created_at', 'desc')->get();
+        return view('tickets.index', compact('openTickets', 'closedTickets'));
     }
 
     public function create()
@@ -32,6 +33,7 @@ class TicketController extends Controller
             'user_id' => auth()->id(),
             'title' => $request->title,
             'description' => $request->description,
+            'status' => 'aberto', // Definindo o status inicial como 'aberto'
         ]);
 
         return redirect()->route('tickets.index')->with('success', 'Ticket criado com sucesso!');
@@ -73,4 +75,17 @@ class TicketController extends Controller
         $ticket->delete();
         return redirect()->route('tickets.index')->with('success', 'Ticket deletado com sucesso!');
     }
+
+    public function close(Ticket $ticket)
+{
+    // Verificar se o usuário é o dono do ticket
+    if ($ticket->user_id != auth()->id()) {
+        return redirect()->route('tickets.index')->with('error', 'Você não tem permissão para encerrar este ticket.');
+    }
+
+    // Encerrar o ticket
+    $ticket->update(['status' => 'fechado']);
+    return redirect()->route('tickets.index')->with('success', 'Ticket encerrado com sucesso!');
+}
+
 }

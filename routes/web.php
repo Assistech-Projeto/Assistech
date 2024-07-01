@@ -21,16 +21,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{ticket}/edit', [TicketController::class, 'edit'])->name('tickets.edit');
         Route::put('/{ticket}', [TicketController::class, 'update'])->name('tickets.update');
         Route::delete('/{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');
+        Route::get('/{ticket}/close', [TicketController::class, 'close'])->name('tickets.close');
     });
 
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    
 });
 
-
-
-
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
